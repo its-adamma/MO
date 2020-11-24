@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h2>{{ display_mask.common_name }}</h2>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="{{ display_mask.image_url }}" class="img-responsive">
+        </div>
+
+        <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
+            <div class="well">
+                <!-- <h3>Price per mask</h3>
+                <p> {{ display_mask.price_str() }} </p> -->
+                <a class="btn btn-primary" href="/add_to_cart/{{ display_mask.mask_id }}">
+                    Add to Wishlist
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask-details">
+
+        <h3>Mask Details</h3>
+
+        <ul>
+            <li>Testing and
+                Approval: {{ display_mask.mask_type }}</li>
+            <li>Designed for Reuse: {{ display_mask.reusable }}</li>
+            {% if display_mask.valve %}
+              <li><i>*Source: Center for Disease Control and Prevalveion Guidance</i></li>
+            {% else %}
+              <li class='warning'>Warning! This mask has a valves, not recommended in operating rooms</li>
+            {% endif %}
+        </ul>
+    </div>
+
+{% endblock %}

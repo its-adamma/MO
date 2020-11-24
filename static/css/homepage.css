@@ -1,0 +1,31 @@
+/* Homepage  */
+   
+body {
+    background: #293D55 url("/static/img/mask_background1.png");
+    background-size: cover;
+    color: black;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    
+}
+
+/* title {
+
+} */
+
+div.transbox {
+    margin: 20px;
+    background-color: #ffffff;
+    opacity: 0.6;
+    
+}
+
+div.transbox p {
+    /* tag line text */
+    margin: 2%;
+    font-weight: bold;
+    color: #0561ac;
+}
+
+/* my-bootstrap-row transparent background for readability */
+

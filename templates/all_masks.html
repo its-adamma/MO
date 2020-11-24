@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Masks Available</h1>
+
+    <div id="mask-list" class="row">
+      {% for mask in mask_list %}
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 mask-summary">
+
+              <div class="well">
+                  <h3><a href="/mask/{{ mask.mask_id }}">{{ mask.common_name }}</a></h3>
+                  <a href="/mask/{{ mask.mask_id }}">
+                      <img src="{{ mask.image_url }}" class="img-circle">
+                  </a>
+
+                  <div class="price">{{ mask.price_str() }}</div>
+                  <a class="btn btn-primary" href="/mask/{{ mask.mask_id }}">Details</a>
+              </div>
+
+          </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}

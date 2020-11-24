@@ -1,0 +1,228 @@
+{
+  "description": "Mask Oakland SMS Redirect Bot",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "next": "send_and_reply_1",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "incomingRequest"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 20,
+          "y": -170
+        }
+      }
+    },
+    {
+      "name": "send_and_reply_1",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "split_decision",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 10,
+          "y": -30
+        },
+        "from": "{{flow.channel.address}}",
+        "body": "Welcome to Mask Oakland. Are you are a healthcare worker whose hospital is need of masks to curve the spread of COVID-19?",
+        "timeout": "3"
+      }
+    },
+    {
+      "name": "split_decision",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "invalid_entry",
+          "event": "noMatch"
+        },
+        {
+          "next": "accepted_entry",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "if value equal to y, yes",
+              "arguments": [
+                "{{widgets.send_and_reply_1.inbound.Body}}"
+              ],
+              "type": "matches_any_of",
+              "value": "yes, y"
+            }
+          ]
+        },
+        {
+          "next": "deny_entry",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to n, no",
+              "arguments": [
+                "{{widgets.send_and_reply_1.inbound.Body}}"
+              ],
+              "type": "equal_to",
+              "value": "n, no"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.send_and_reply_1.inbound.Body}}",
+        "offset": {
+          "x": -310,
+          "y": 160
+        }
+      }
+    },
+    {
+      "name": "split_confirm",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "event": "noMatch"
+        },
+        {
+          "next": "call_barista",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "y, yes",
+              "arguments": [
+                "{{widgets.send_and_reply_connecting.inbound.Body}}"
+              ],
+              "type": "matches_any_of",
+              "value": "y, yes"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.send_and_reply_connecting.inbound.Body}}",
+        "offset": {
+          "x": -770,
+          "y": 860
+        }
+      }
+    },
+    {
+      "name": "call_barista",
+      "type": "make-outgoing-call-v1",
+      "transitions": [
+        {
+          "event": "answered"
+        },
+        {
+          "event": "answeredByMachine"
+        },
+        {
+          "event": "busy"
+        },
+        {
+          "event": "noAnswer"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -830,
+          "y": 1120
+        },
+        "record": false,
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}"
+      }
+    },
+    {
+      "name": "accepted_entry",
+      "type": "send-message",
+      "transitions": [
+        {
+          "event": "sent"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -140,
+          "y": 410
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}",
+        "body": "Please fill out a request form here: http://localhost:5000/",
+        "media_url": "http://localhost:5000/"
+      }
+    },
+    {
+      "name": "invalid_entry",
+      "type": "send-message",
+      "transitions": [
+        {
+          "event": "sent"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -470,
+          "y": 410
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}",
+        "body": "Please submit a valid entry.\n(Yes/Y or No/N)"
+      }
+    },
+    {
+      "name": "deny_entry",
+      "type": "send-message",
+      "transitions": [
+        {
+          "event": "sent"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 150,
+          "y": 390
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}",
+        "body": "Thank you for your interest. At this time we currently only accept requests from healthcare workers."
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}

@@ -1,0 +1,65 @@
+<html>
+<head>
+    <!DOCTYPE html>
+    <head>
+    
+    <link rel="shortcut icon" type="image/png" href="img/mask_logo.png">
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/css/site.css"/>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <img src="/static/img/mask_logo_small.png">
+            <a class="navbar-brand" href="/">Masks on Demand</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/masks">
+                        Available Masks
+                    </a>
+                    <a href="/about">
+                        About Us
+                    </a>
+                    <a href="/request">
+                        <img class="mask-wishlist"
+                             src="/static/img/wishlish_icon.png">
+                        My Mask Wishlist
+                    </a>
+                </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/login">
+                            Log In
+                        </a>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+  <!-- flashed messages -->
+  {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+          <div class="alert alert-warning">{{ message }}</div>
+      {% endfor %}
+  {% endwith %}
+
+  <!-- inhertieance used in body  -->
+  {% block body %}
+      
+  {% endblock %}
+
+</div>
+
+</body>
+</html>

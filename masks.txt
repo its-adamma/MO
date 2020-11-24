@@ -1,0 +1,4 @@
+n95|Evaluated, Tested, and Approved by NIOSH as per the requirements in 42 CFR Part 84|N95 Respiator Mask 1 (50 pk)|0|/static/img/n95_respirator.png|no|1
+surg|Clearned by the US Food and Drug Administration|Surgical Mask (60 pk)|0|https://www.bhphotovideo.com/images/images2500x2500/gerimedix_13_188_disposable_3_ply_isolation_facemasks_1559533.jpg|no|1
+n95v|Respirator|N95 Respiator Mask with Valve (70 pk)|0|/static/img/n95_respirator_v.png|no|0
+cloth|Mask|Cloth Mask (20 pk)|0|https://cdn.shopify.com/s/files/1/0352/1069/0696/products/HeatherGreyMask_clothmask_1024x.png?v=1596656605|yes|1

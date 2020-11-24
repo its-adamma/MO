@@ -1,0 +1,43 @@
+/* Style for Mask Oakland Request App */
+
+
+/* logo style. */
+
+/* div.navbar-header img {
+    width: 30px;
+    float: left;
+    margin-top: 70px;
+    margin-right: 7px;
+}
+
+img.mask-cart {
+    height: 15px;
+}
+
+/* all-masks listing */
+
+div.mask-summary img {
+    width: 15em;
+}
+
+div.mask-summary .price {
+    margin: 0.5em 0;
+    font-size: 200%;
+    font-weight: bold;
+}
+ 
+
+/* mask-detail-page */
+
+.warning {
+    color: CF4813;
+}
+
+
+/* login form */
+
+.form-signin {
+  max-width: 330px;
+  margin: 5em auto 0 auto; 
+}
+
