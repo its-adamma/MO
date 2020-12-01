@@ -19,6 +19,8 @@ class mask(object):
         self.image_url = image_url
         self.reusable = reusable
         self.has_valve = has_valve
+        
+
 
     def price_str(self):
         """Return price formatted as string $x.xx"""

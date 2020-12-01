@@ -1,12 +1,13 @@
-"""Masks on Demand appl Flask server
+"""Masks on Demand app Flask server
 
 Browse masks, view details, and to wishlist
 """
 
-from flask import Flask, render_template, redirect, flash, session, jsonify
+from flask import Flask, render_template, redirect,request, flash, session, jsonify
 
 import jinja2
 import masks
+import crud
 
 app = Flask(__name__)
 
@@ -27,18 +28,35 @@ def index():
 
 @app.route("/about")
 def view_about():
-    """Return About US page"""
+    """Return About Us page"""
 
     return render_template("about_us.html")
 
 
 @app.route("/masks")
 def list_masks():
-    """Return page showing all the masks ubermask has to offer"""
-
-    mask_list = masks.get_all()
+    """Return page showing all the masks offered"""
+    
+    mask_list = crud.get_masks()
     return render_template("all_masks.html",
                            mask_list=mask_list)
+    
+@app.route("/all_masks_s")
+def list_masks_from_db():
+    """Return page showing all the masks offered"""
+
+    mask_list = crud.get_masks()
+    return render_template("all_masks_s.html",
+                           mask_list=mask_list)
+    
+    
+@app.route("/all_users")
+def list_users():
+    """Return page showing all users"""
+
+    users = crud.get_users()
+    return render_template("all_users.html",
+                           users=users)
 
 
 @app.route("/mask/<mask_id>")
@@ -46,15 +64,15 @@ def show_mask(mask_id):
     """Return page showing mask details with button to add masks to wishlist
     """
 
-    mask = masks.get_by_id(mask_id)
+    mask = crud.get_mask_by_id(mask_id)
     print(mask)
     return render_template("mask_details.html",
-                           display_mask=mask)
+                           mask=mask)
 
 
-@app.route("/request")
+@app.route("/requests")
 def display_request():
-    """Display content of request."""
+    """Display all requests"""
 
     request_contents = session.get('request', {})
     mask_objects = []
@@ -68,12 +86,12 @@ def display_request():
                 (request_mask.price * request_contents[key]))
         mask_objects.append(request_mask)
 
-    return render_template("request.html",
+    return render_template("requests.html",
                            mask_objects=mask_objects, request_total_cost=request_total_cost)
 
 
-@app.route("/add_to_request/<mask_id>")
-def add_to_request(mask_id):
+# @app.route("/add_to_request/<mask_id>")
+# def add_to_request(mask_id):
 #     """Add a mask to wishlist request and redirect to wishlist request page.
 
 #     When a mask is added to the request, redirect browser to wishlist page and display a confirmation message
@@ -86,14 +104,63 @@ def add_to_request(mask_id):
     # flash a success message
     # redirect the user to the request page
 
-    session['request'] = session.get('request', {})
+    # session['request'] = session.get('request', {})
 
-    session['request'][mask_id] = session['request'].get(mask_id, 0) + 1
+    # session['request'][mask_id] = session['request'].get(mask_id, 0) + 1
 
-    flash('mask successfully added to request!')
+    # flash('mask successfully added to request!')
 
-    return redirect("/request")
+    # return redirect("/request")
 
+@app.route("/make_mask", methods=["GET"])
+def show_mask_form():
+    """Show make mask form."""
+
+    return render_template("make_mask.html")
+        
+@app.route("/make_mask", methods=["POST"])
+def process_make_mask_form():
+    """ """
+    mask_type = request.form.get("mask_type")
+    img_url = request.form.get("img_url")
+    mask_test = request.form.get("mask_test")
+    reusable = False#request.form.get("reusable")
+    valve = False#request.form.get("valve")
+    fit = request.form.get("fit")
+    filtration = request.form.get("filtration")
+    limitation = request.form.get("limitation")
+    
+    crud.create_mask_type(mask_type, img_url, mask_test,reusable,valve, fit, filtration, limitation)
+
+    return redirect("/masks")
+
+@app.route("/make_request", methods=["POST"])
+def make_request():
+    """User makes a request"""
+    mask_id = request.form.get("mask_id")
+    user_id = session["user_id"]
+    
+    print(f"User ID = {user_id}")
+    
+    crud.create_request(user_id,mask_id)
+    
+    flash('Your request has been received!')
+    
+    return redirect("/masks")
+
+@app.route("/view_wishlist", methods=["GET"])
+def view_wishlist():
+    """Show items in wishlist."""
+    
+    user_id = session["user_id"]
+    
+    user = crud.get_user_by_id(user_id)
+
+    return render_template("view_wishlist.html", user = user)
+
+
+
+# ------LOGIN -----------
 
 @app.route("/login", methods=["GET"])
 def show_login():
@@ -103,17 +170,37 @@ def show_login():
 
 
 @app.route("/login", methods=["POST"])
-def process_login():
-    """Log user into site.
+def login():
+    """Log user into application."""
 
-    user's login credentials located in the 'request.form'
-    dictionary
-    look up the user
-    store them in the session.
-    """
+    email = request.form.get('email')
+    password = request.form.get('password')
+    
+    user = crud.get_user_by_email(email)
 
-    return "⚠️ Please check back again later"
+    if password == user.password:   
+        session["user_id"] = user.user_id
+        flash(f'Logged in as {email}')
+        return redirect('/masks')
+    else:
+        flash('Wrong password!')
+        return redirect('/login')
 
+
+# @app.route("/login", methods=["POST"])
+# def process_login():
+#     """Log user into site.
+
+#     user's login credentials located in the 'request.form'
+#     dictionary
+#     look up the user
+#     store them in the session.
+#     """
+    
+#     # query db to see if emal & pw valid user
+#     #session["user_id"]=user.user_id
+
+#     return "⚠️ Please check back again later"
 
 # @app.route("/checkout")
 # def checkout():
@@ -141,5 +228,7 @@ def process_login():
 #     flash('Your arelogged out!')
 #     return redirect("/masks")
 
-# if __name__ == "__main__":
-#     app.run(debug=True, host="0.0.0.0")
+if __name__ == "__main__":
+    crud.connect_to_db(app)
+    app.run(debug=True, host="0.0.0.0")
+    

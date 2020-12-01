@@ -8,17 +8,19 @@
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 mask-summary">
 
               <div class="well">
-                  <h3><a href="/mask/{{ mask.mask_id }}">{{ mask.common_name }}</a></h3>
+                  <h3><a href="/mask/{{ mask.mask_id }}">{{ mask.mask_type }}</a></h3>
                   <a href="/mask/{{ mask.mask_id }}">
-                      <img src="{{ mask.image_url }}" class="img-circle">
+                      <img src="{{ mask.img_url }}" class="img-circle">
                   </a>
-
-                  <div class="price">{{ mask.price_str() }}</div>
+                <p>Price: $0.00</p>
+            </div>
                   <a class="btn btn-primary" href="/mask/{{ mask.mask_id }}">Details</a>
               </div>
 
           </div>
       {% endfor %}
     </div>
+
+    
 
 {% endblock %}
