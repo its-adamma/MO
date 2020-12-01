@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} Current Wishlist{% endblock %}
+{% block body %}
+
+
+        <h1>Current Wishlist ⚕️</h1>
+
+        {% for req in user.requests%}
+            {{req.mask_type.mask_type}}
+    
+            
+
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Make Mask{% endblock %}
+{% block body %}
+  <h1>Make Mask</h1>
+
+  <form action="/make_mask" method="POST">
+    <section>
+      Mask type: <input type = "text" name="mask_type" required>
+    </section>
+
+    <section>
+      Mask test: <input type = "text" name="mask_test" required>
+      
+      <section>Reusable: <input type = "text" name="reusable" required>
+      </section>
+
+      <section>Valve: <input type = "text" name="valve" required>
+      </section>
+
+      <section>Fit: <input type = "text" name="fit" required>
+      </section>
+
+      <section>Filtration: <input type = "text" name=" filtration" required>
+      </section>
+
+      <section>Limitation: <input type = "text" name=" limitation" required>
+      </section>
+
+
+    <section>
+      <input type = "submit"> </section>
+    </section>
+  </form>
+{% endblock %} 
+  
+

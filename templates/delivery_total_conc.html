@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} Login{% endblock %}
+{% block body %}
+
+
+        <h1>MASKS DONATED BY TYPE </h1>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mask Types', 'Quantity Donated'],
+          ['N95',     30440],
+          ['Surgical',      2800],
+          ['N95 with Valve',  3600],
+          ['Cloth', 560],
+          ['KN95', 4310],
+    
+        ]);
+
+        var options = {
+          title: 'Mask Delivered',
+          pieHole: 0.4,
+          height: 600,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+
+        <head>
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+          <script type="text/javascript">
+            google.charts.load("current", {packages:["calendar"]});
+            google.charts.setOnLoadCallback(drawChart);
+      
+         function drawChart() {
+             var dataTable = new google.visualization.DataTable();
+             dataTable.addColumn({ type: 'date', id: 'Date' });
+             dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+             dataTable.addRows([
+                [ new Date(2020, 2, 16), 80 ],
+                [ new Date(2020, 2, 17), 130 ],
+                [ new Date(2020, 2, 19), 250 ],
+                [ new Date(2020, 2, 20), 300 ],
+                [ new Date(2020, 2, 22), 120 ],
+                [ new Date(2020, 2, 23), 270 ],
+                [ new Date(2020, 2, 25), 600 ],
+                [ new Date(2020, 2, 27), 150 ],
+                [ new Date(2020, 2, 28), 280 ],
+                [ new Date(2020, 3, 06), 400 ],
+                [ new Date(2020, 3, 08), 850 ],
+                [ new Date(2020, 3, 11), 300 ],
+                [ new Date(2020, 3, 14), 100 ],
+                [ new Date(2020, 3, 17), 1050 ],
+                [ new Date(2020, 3, 20), 350 ],
+                [ new Date(2020, 3, 23), 900 ],
+                [ new Date(2020, 3, 29), 720 ],
+                [ new Date(2020, 4, 05), 2000 ],
+                [ new Date(2020, 4, 06), 880 ],
+                [ new Date(2020, 4, 09), 2250 ],
+                [ new Date(2020, 4, 10), 500 ],
+                [ new Date(2020, 4, 13), 400 ],
+                [ new Date(2020, 4, 17), 1350 ],
+                [ new Date(2020, 4, 19), 2150 ],
+                [ new Date(2020, 4, 22), 2200 ],
+      
+              ]);
+      
+             var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+      
+             var options = {
+               title: "",
+               height: 350,
+               width: 397
+             };
+      
+             chart.draw(dataTable, options);
+         }
+          </script>
+        </head>
+     
+          <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+   
+
+{% endblock %}

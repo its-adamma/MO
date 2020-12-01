@@ -6,7 +6,6 @@ Browse masks, view details, and to wishlist
 from flask import Flask, render_template, redirect,request, flash, session, jsonify
 
 import jinja2
-import masks
 import crud
 
 app = Flask(__name__)
@@ -186,6 +185,12 @@ def login():
         flash('Wrong password!')
         return redirect('/login')
 
+
+@app.route("/delivery_total_conc")
+def view_mask_total():
+    """Return Mask Delivery total by mask type"""
+
+    return render_template("delivery_total_conc.html")
 
 # @app.route("/login", methods=["POST"])
 # def process_login():
