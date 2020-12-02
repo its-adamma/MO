@@ -48,14 +48,16 @@
 
 <div class="container">
 
-  <!-- flashed messages -->
+  {# flashed messages #}
+
   {% with messages = get_flashed_messages() %}
       {% for message in messages %}
           <div class="alert alert-warning">{{ message }}</div>
       {% endfor %}
   {% endwith %}
 
-  <!-- inhertieance used in body  -->
+  {# inhertieance used in body #}
+  
   {% block body %}
       
   {% endblock %}

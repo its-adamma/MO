@@ -6,15 +6,15 @@
 
   <ul>
     {% for user in users %}
-      <li>
+        <li>
         <a href="/users/{{ user.user_id }}">
-        <img src="{{ mask.image_url }}" class="img-circle">
-          First name: {{ user.fname }}
-          Last name: {{ user.lname }}
-          Phone number: {{ user.phone }}
-          Email: {{ user.email }}
+        
+          Full name: {{ user.fname }} {{ user.lname }}
+          <p>Phone number: {{ user.phone }}</p>
+          <p>Email: {{ user.email }}</p>
         </a>
       </li>
     {% endfor %}
   </ul>
 {% endblock %}
+

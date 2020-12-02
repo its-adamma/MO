@@ -38,7 +38,7 @@ def list_masks():
     
     mask_list = crud.get_masks()
     return render_template("all_masks.html",
-                           mask_list=mask_list)
+                        mask_list=mask_list)
     
 @app.route("/all_masks_s")
 def list_masks_from_db():
@@ -46,7 +46,7 @@ def list_masks_from_db():
 
     mask_list = crud.get_masks()
     return render_template("all_masks_s.html",
-                           mask_list=mask_list)
+                        mask_list=mask_list)
     
     
 @app.route("/all_users")
@@ -55,7 +55,7 @@ def list_users():
 
     users = crud.get_users()
     return render_template("all_users.html",
-                           users=users)
+                        users=users)
 
 
 @app.route("/mask/<mask_id>")
@@ -66,7 +66,7 @@ def show_mask(mask_id):
     mask = crud.get_mask_by_id(mask_id)
     print(mask)
     return render_template("mask_details.html",
-                           mask=mask)
+                        mask=mask)
 
 
 @app.route("/requests")
@@ -86,30 +86,8 @@ def display_request():
         mask_objects.append(request_mask)
 
     return render_template("requests.html",
-                           mask_objects=mask_objects, request_total_cost=request_total_cost)
-
-
-# @app.route("/add_to_request/<mask_id>")
-# def add_to_request(mask_id):
-#     """Add a mask to wishlist request and redirect to wishlist request page.
-
-#     When a mask is added to the request, redirect browser to wishlist page and display a confirmation message
-
-
-    # check if wishlist requests exists in the sessionand create one (empty
-    # dict keyed to the string "request") if not
-    # check if the desired mask id is the request, and if not, put it in
-    # increment count for that mask id by 1
-    # flash a success message
-    # redirect the user to the request page
-
-    # session['request'] = session.get('request', {})
-
-    # session['request'][mask_id] = session['request'].get(mask_id, 0) + 1
-
-    # flash('mask successfully added to request!')
-
-    # return redirect("/request")
+                        mask_objects=mask_objects, 
+                        request_total_cost=request_total_cost)
 
 @app.route("/make_mask", methods=["GET"])
 def show_mask_form():
@@ -123,8 +101,8 @@ def process_make_mask_form():
     mask_type = request.form.get("mask_type")
     img_url = request.form.get("img_url")
     mask_test = request.form.get("mask_test")
-    reusable = False#request.form.get("reusable")
-    valve = False#request.form.get("valve")
+    reusable = False
+    valve = False
     fit = request.form.get("fit")
     filtration = request.form.get("filtration")
     limitation = request.form.get("limitation")
@@ -192,15 +170,29 @@ def view_mask_total():
 
     return render_template("delivery_total_conc.html")
 
-# @app.route("/login", methods=["POST"])
-# def process_login():
-#     """Log user into site.
+if __name__ == "__main__":
+    crud.connect_to_db(app)
+    app.run(debug=True, host="0.0.0.0")
+    
 
-#     user's login credentials located in the 'request.form'
-#     dictionary
-#     look up the user
-#     store them in the session.
-#     """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 #     # query db to see if emal & pw valid user
 #     #session["user_id"]=user.user_id
@@ -233,7 +225,3 @@ def view_mask_total():
 #     flash('Your arelogged out!')
 #     return redirect("/masks")
 
-if __name__ == "__main__":
-    crud.connect_to_db(app)
-    app.run(debug=True, host="0.0.0.0")
-    

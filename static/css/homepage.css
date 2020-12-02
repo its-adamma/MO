@@ -29,3 +29,9 @@ div.transbox p {
 
 /* my-bootstrap-row transparent background for readability */
 
+footer {
+    position: absolute;
+    bottom: 12%;
+    width: 100%;
+    height: 2.5rem;
+}

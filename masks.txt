@@ -2,3 +2,86 @@ n95|Evaluated, Tested, and Approved by NIOSH as per the requirements in 42 CFR P
 surg|Clearned by the US Food and Drug Administration|Surgical Mask (60 pk)|0|https://www.bhphotovideo.com/images/images2500x2500/gerimedix_13_188_disposable_3_ply_isolation_facemasks_1559533.jpg|no|1
 n95v|Respirator|N95 Respiator Mask with Valve (70 pk)|0|/static/img/n95_respirator_v.png|no|0
 cloth|Mask|Cloth Mask (20 pk)|0|https://cdn.shopify.com/s/files/1/0352/1069/0696/products/HeatherGreyMask_clothmask_1024x.png?v=1596656605|yes|1
+
+
+create_mask_type(mask_type="N95 Respirator (120 pck)",img_url="static/img/n95_respirator.png", mask_test="Evaluated, Tested, and Approved by NIOSH as per the requirements in 42 CFR Part 84",reusable=False,valve=False, fit="Tight-fitting", filtration="Filters out at least 95% of airborne particles including large and small particles", limitation="Ideally should be discarded after each patient encounter and after aerosol-generating procedures. It should also be discarded when it becomes damaged or deformed; no longer forms an effective seal to the face; becomes wet or visibly dirty; breathing becomes difficult; or if it becomes contaminated with blood, respiratory or nasal secretions, or other bodily fluids.")
+
+create_mask_type(mask_type="Surgical Mask (60 pck)",img_url="static/img/surg_mask.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=False, fit="Loose-fitting", filtration="Does NOT provide the wearer with a reliable level of protection from inhaling smaller airborne particles and is not considered respiratory protection", limitation="Disposable. Discard after each patient encounter.")
+
+create_mask_type(mask_type="N95 Respirator V (80 pck)",img_url="static/img/n95_respirator.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=True, fit="Loose-fitting. Makes breathing out easier and helps reduce heat build-up", filtration="", limitation="")
+
+create_mask_type(mask_type="Cloth Mask (20 pck)",img_url="static/img/cloth_mask.png", reusable=True,valve=False, fit="Loose-fitting", filtration=" Multiple layers of cloth with higher thread counts have demonstrated superior performance compared to single layers of cloth with lower thread counts, in some cases filtering nearly 50% of fine particles less than 1 micron .14,17-29", limitation="Recommended for personal use only", mask_test="")
+
+create_mask_type(mask_type="KN95 (90 pck)",img_url="static/img/kn95.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=False, fit="Loose-fitting", filtration="Does NOT provide the wearer with a reliable level of protection from inhaling smaller airborne particles and is not considered respiratory protection", limitation="Disposable. Discard after each patient encounter.")
+
+create_request(request_id,user_id, mask_id, healthcare_center, address,num_packs)
+
+create_user(fname="Amelia",lname="Grey", phone=7743433, email="amelia@greysanatomy.com", password="securepw")
+
+create_user(fname="Simone",lname="Biles", phone=443445, email="drsimone@gmail.com", password="pw")
+
+create_user(fname="Ben",lname="Abrams", phone=2345678, email="babes@aol.com", password="pw")
+
+
+create_user(fname="Ike",lname="Zhu", phone=678347, email="love_candy@xanga.com", password="pw")
+
+create_user(fname="Tommy",lname="Hilf", phone=2743480, email="t.hill@myspace.com", password="yolo")
+
+create_user(fname="Ky",lname="Blinderson", phone=5746410, email="ky@bye.com", password="securepw")
+
+SCRAP
+
+{% extends 'base.html' %}
+{% block title %}All Masks{% endblock %}
+
+{% block body %}
+  <h1>All Masks SCRAP
+    SCRAP
+    SCRAP
+    SCRAP
+  </h1>
+
+  <ul>
+    {% for mask in mask_list %}
+      <li>
+        <a href="/masks/{{mask.mask_id}}">Mask Details</a>
+        <img src="{{mask.img_url}}" class="img-responsive">
+
+        <ul>
+          <li>{{ mask.mask_type }}</li>
+          <li>Testing and Approval: {{ mask.mask_test }}</li>
+          <li>Designed for Reuse: {{ mask.reusable }}</li>
+          <li>Face Seal Fit: {{ mask.reusable }}</li>
+          <li>Filtration: {{ mask.filtration }}</li>
+          <li>Use Limitations: {{ mask.limitation }}</li>
+
+          <li><i>*Source: Center for Disease Control and Prevalveion Guidance</i></li>
+
+        {# {% if mask.valve = True %}
+            <li><i>*Source: Center for Disease Control and Prevalveion Guidance</i></li>
+          {% else %}
+            <li class='warning'>Warning! This mask has a valve, not recommended in operating rooms</li>
+          {% endif %}
+        </ul> #}
+          
+    {% endfor %}
+  </ul>
+{% endblock %}
+</div>
+
+{#  event listener
+  hide with CSS
+  show with js
+  #}
+
+
+
+  # @app.route("/add_to_request/<mask_id>")
+# def add_to_request(mask_id):
+#     """Add a mask to wishlist request and redirect to wishlist request page.
+
+#     When a mask is added to the request, redirect browser to wishlist page and display a confirmation message
+
+
+    # check if wishlist requests exists in the sessionand create one (empty
+    # dict keyed to the string "request") if not

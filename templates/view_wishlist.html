@@ -3,12 +3,19 @@
 {% block body %}
 
 
-        <h1>Current Wishlist ⚕️</h1>
+        <h1>Current Wishlist 🎁</h1>
 
-        {% for req in user.requests%}
-            {{req.mask_type.mask_type}}
-    
+        {% if user.requests == [] %}
+        <p>⚠️  Nothing has been added to your wishlist yet. </p>
+        <p> Please view item details and click submit.</p>
+        <p> <a href="/masks">View Masks<a></p>
+            <img src={{ "https://i.ibb.co/Ctbfbsy/thankyou-1.jpg" }} width="300" height="200" alt-text="Physicans holding up thank you sign for Mask Oakland">
+        {% else %}
+            {% for req in user.requests%}
+                {{req.mask_type.mask_type}}
+
             
 
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
 {% endblock %}

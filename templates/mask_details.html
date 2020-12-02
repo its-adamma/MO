@@ -4,23 +4,24 @@
 
     <h2>{{ mask.mask_type }}</h2>
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <img src="{{mask.img_url }}" class="img-responsive">
-        </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <img src={{ mask.img_url }} class="img-responsive">
+               
+            </div>
 
-        <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
-            <div class="well">
-                
-                <a class="btn btn-primary" href="/add_to_cart/{{mask.mask_id }}">
-                    Add to Wishlist
-                </a>
+            <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
+                <div class="well">
+                    
+                    <a class="btn btn-primary" href="/add_to_cart/{{mask.mask_id }}">
+                        Add to Wishlist
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="mask-details">
+        <div class="mask-details">
 
         <h3>Mask Details</h3>
 
@@ -31,12 +32,17 @@
             <li>Filtration: {{ mask.filtration }}</li>
             <li>Use Limitations: {{ mask.limitation }}</li>
 
-            <p></p><i>*Source: Center for Disease Control and Prevalveion Guidance</i>
 
             {% if mask.valve %}
-            <li class='warning'>Warning! This mask has a valves, not recommended in operating rooms</li>
+                <li class='warning'>Warning!: Exhalation valves should not be used when sterile conditions are needed. 
+                
+                <p><p></p>Respirators with exhalation valves protect the wearer from SARS-CoV-2, the virus that causes COVID-19, but may not prevent the virus spreading from the wearer to others</p>
+                </li>
 
             {% endif %}
+
+
+            <p></p><i>*Source: Center for Disease Control and Prevalveion Guidance</i>
         </ul>
 
         <form action="/make_request" method="POST">

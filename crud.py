@@ -1,7 +1,3 @@
-# what do you want to disp in app, write cruf fun for that
-# mask types 
-#limit in cart of masks
-
 """CRUD operations"""
 from model import db, User, MaskType, Request, connect_to_db
 
@@ -28,6 +24,16 @@ def create_user(fname, lname, phone, email, password):
 
     return user
 
+def get_user_by_email(email):
+    """Return a user by email"""
+
+    return User.query.filter(User.email == email).first()
+
+def get_user_by_id(user_id):
+    """Return a user by user_id"""
+
+    return User.query.get(user_id)
+
 # def delete_user(user_id):
 #     """Delete user from database"""
     
@@ -40,15 +46,6 @@ def create_user(fname, lname, phone, email, password):
 #     db.session.delete(user_id)
 #     db.session.commit()
 
-def get_user_by_email(email):
-    """Return a user by email"""
-
-    return User.query.filter(User.email == email).first()
-
-def get_user_by_id(user_id):
-    """Return a user by user_id"""
-
-    return User.query.get(user_id)
 # ----------------------REQUESTS-------------------
 def get_requests():
     """Return all requests."""
@@ -120,16 +117,9 @@ def view_mask(mask_id):
     mask = MaskType.query.get(mask_id)
     return mask
 
-
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
-    
-# create_mask_type(mask_type="ddN95 Respirator", img_url="n95_respirator.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=False, fit="Loose-fitting", filtration="Does NOT provide the wearer with a reliable level of protection from inhaling smaller airborne particles and is not considered respiratory protection", limitation="Disposable. Discard after each patient encounter.")
 
 
 
-# create_user(fname="Tam",lname="LBrr", phone=443445, email="tam@gmail.com", password="pw")
-
-
-# create_request(request_id,user_id, mask_id, healthcare_center, address,num_packs)
