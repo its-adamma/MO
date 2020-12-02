@@ -125,7 +125,7 @@ if __name__ == '__main__':
     from server import app
     connect_to_db(app)
     
-# create_mask_type(mask_type="n95", img_url="/static/n95_respirator.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=False, fit="Loose-fitting", filtration="Does NOT provide the wearer with a reliable level of protection from inhaling smaller airborne particles and is not considered respiratory protection", limitation="Disposable. Discard after each patient encounter.")
+# create_mask_type(mask_type="ddN95 Respirator", img_url="n95_respirator.png", mask_test="Cleared by the U.S. Food and Drug Administration (FDA)",reusable=False,valve=False, fit="Loose-fitting", filtration="Does NOT provide the wearer with a reliable level of protection from inhaling smaller airborne particles and is not considered respiratory protection", limitation="Disposable. Discard after each patient encounter.")
 
 
 

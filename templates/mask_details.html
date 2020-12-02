@@ -27,14 +27,15 @@
         <ul>
             <li>Testing and Approval: {{ mask.mask_test }}</li>
             <li>Designed for Reuse: {{ mask.reusable }}</li>
-            <li>Face Seal Fit: {{ mask.reusable }}</li>
+            <li>Face Seal Fit: {{ mask.fit }}</li>
             <li>Filtration: {{ mask.filtration }}</li>
             <li>Use Limitations: {{ mask.limitation }}</li>
 
+            <p></p><i>*Source: Center for Disease Control and Prevalveion Guidance</i>
+
             {% if mask.valve %}
-              <li><i>*Source: Center for Disease Control and Prevalveion Guidance</i></li>
-            {% else %}
-              <li class='warning'>Warning! This mask has a valves, not recommended in operating rooms</li>
+            <li class='warning'>Warning! This mask has a valves, not recommended in operating rooms</li>
+
             {% endif %}
         </ul>
 
