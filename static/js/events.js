@@ -16,3 +16,4 @@ $('#add-to-wishlist').on('click', (evt) => {
         alert(res);
     });
 });
+
