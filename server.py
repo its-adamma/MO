@@ -113,7 +113,7 @@ def process_make_mask_form():
 
 @app.route("/make_request", methods=["POST"])
 def make_request():
-    """User makes a request"""
+    """User makes a request (wishlist)"""
     mask_id = request.form.get("mask_id")
     user_id = session["user_id"]
     
@@ -124,6 +124,19 @@ def make_request():
     flash('Your request has been received!')
     
     return redirect("/masks")
+
+
+@app.route("/make_request_ajax", methods=["POST"])
+def make_request_ajax():
+    """"""
+    mask_id = request.form.get("mask_id")
+    user_id = session["user_id"]
+    
+    print(f"User ID = {user_id}")
+    
+    crud.create_request(user_id,mask_id)
+    
+    return "Your request has been received!"
 
 @app.route("/view_wishlist", methods=["GET"])
 def view_wishlist():

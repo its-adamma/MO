@@ -14,7 +14,7 @@
             <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
                 <div class="well">
                     
-                    <a class="btn btn-primary" href="/add_to_cart/{{mask.mask_id }}">
+                    <a class="btn btn-primary" id="add-to-wishlist" href="/add_to_cart/{{mask.mask_id }}">
                         Add to Wishlist
                     </a>
                 </div>
@@ -47,7 +47,7 @@
 
         <form action="/make_request" method="POST">
             <section>
-             <input type = "hidden" name="mask_id" value="{{ mask.mask_id }}">
+             <input type = "hidden" name="mask_id" id = "mask_id" value="{{ mask.mask_id }}">
             </section>
 
             <section>
