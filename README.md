@@ -1,5 +1,5 @@
 <center><img src="/static/img/mask_logo.png"/></center>
-<p><h1>Masks On Demand</h1</p>
+<p><h1>Masks On Demand</h1></p>
 
 
 <p> Masks On Demand connects Bay Area physicians to free PPE (personal protective equipment), delivery included. This full-stack web app streamlines requests for masks, allowing a small but might organization to more effectively curb the spread of COVID-19 in its community. 
