@@ -13,5 +13,16 @@
 
 
 <p><img src="/static/img/rmcover.png" width="80%">
+  
+## Ingredients:
+<li>AJAX
+<li>SQLAlchemy
+<li>Jinja
+<li>Postgresql 
+<li>Python
+<li>Flask
+<li>JSON
+<li>HTML
+<li>CSS
 
 <p><img src="/static/img/txt_graphic.gif" width="40%">
