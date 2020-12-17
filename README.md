@@ -1,7 +1,7 @@
 <p align="center"><img src="/static/img/mask_logo.png">
 <h1>Masks On Demand</h1></p>
 
-<p> Masks On Demand connects Bay Area physicians to free PPE (personal protective equipment), delivery included. This full-stack web app streamlines requests for masks, allowing a small but might organization to more effectively curb the spread of COVID-19 in its community.
+<p> Masks On Demand connects Bay Area physicians to free PPE (personal protective equipment), delivery included. This full-stack web app streamlines requests for masks, allowing a small but mighty organization to more effectively curb the spread of COVID-19 in its community.
 
 <p>Mask Oakland is a primarily queer, trans, disabled, and POC lead organization, originally created to provide relief via free KN95 respirator masks for marginalized communities during fire season. A severe mask shortage occurred in Spring 2020, when the coronavirus initially surged in the US. We swiftly redirected our supply in storage to support medical professionals.
 
